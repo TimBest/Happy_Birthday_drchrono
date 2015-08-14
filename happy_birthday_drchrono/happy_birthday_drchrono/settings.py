@@ -42,9 +42,11 @@ INSTALLED_APPS = (
     'easy_timezones',
     'jinja2',
     'pipeline',
+    'social.apps.django_app.default',
     'robots',
     #'test_without_migrations',
 
+    'accounts',
     'pipeline_jinja2',
     'utils',
 )
@@ -111,7 +113,7 @@ else:
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.environ.get('DB_NAME', 'mydb'),
+        'NAME': os.environ.get('DB_NAME', 'happybirthdaydrchronodb'),
         'OPTIONS': {
             'options': '-c search_path=gis,public,pg_catalog'
         },
@@ -178,6 +180,7 @@ FILE_UPLOAD_HANDLERS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    'drchrono.backends.drchronoOAuth2'
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -191,6 +194,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 # over ride user defaults
@@ -220,11 +225,10 @@ ROBOTS_SITEMAP_URLS = [
     'http://www.composerscouch.com/sitemap.xml',
 ]
 
+
 GEOIP_DATABASE = os.path.join(STATIC_ROOT, 'GeoLiteCity.dat')
 
 try:
-    # import app settings here.
-    # example: from app.settings import *
-    pass
+    from accounts.settings import *
 except ImportError:
     pass

@@ -18,11 +18,15 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     url(r'^robots.txt$', include('robots.urls')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 )
 
 urlpatterns += patterns('utils.views',
     url(r'^$', 'load_template', {'template_name': 'index.html'}, name='home'),
+)
 
+urlpatterns += patterns('',
+    url(r'', include('accounts.urls')),
 )
 
 if settings.DEVELOPMENT:
