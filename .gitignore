@@ -1,0 +1,9 @@
+*~
+*.swp
+*.pyc
+*.pyo
+
+*happy_birthday_drchrono/happy_birthday_drchrono/media/
+*happy_birthday_drchrono/happy_birthday_drchrono/staticfiles/
+
+.elasticbeanstalk/
