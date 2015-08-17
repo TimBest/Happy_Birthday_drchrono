@@ -1,7 +1,19 @@
 import os
 
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/profile/'
+# URL_PATH = ''
+# SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+# SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+# SOCIAL_AUTH_EMAIL_FORM_URL = '/signup-email'
+# SOCIAL_AUTH_EMAIL_FORM_HTML = 'email_signup.html'
+# SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'example.app.mail.send_validation'
+# SOCIAL_AUTH_EMAIL_VALIDATION_URL = '/email-sent/'
+# SOCIAL_AUTH_USERNAME_FORM_URL = '/signup-username'
+# SOCIAL_AUTH_USERNAME_FORM_HTML = 'username_signup.html'
+
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-# TDOD: fix pipeline so registered users can authenticate
+# TODO: fix pipeline so registered users can authenticate
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
     'social.pipeline.social_auth.social_uid',

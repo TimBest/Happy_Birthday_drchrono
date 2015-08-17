@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}{{ request.user.username }}'s Profile{% endblock %}
+
+{% block content %}
+  <div class="panel">
+    <p>{{ request.user.username }}'s Profile.</p>
+  </div>
+{% endblock %}
