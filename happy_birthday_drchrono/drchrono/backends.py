@@ -5,10 +5,6 @@ class drchronoOAuth2(BaseOAuth2):
     name = 'drchrono'
     AUTHORIZATION_URL = 'https://drchrono.com/o/authorize/'
     ACCESS_TOKEN_URL = 'https://drchrono.com/o/token/'
-    EXTRA_DATA = [
-        ('id', 'id'),
-        ('expires', 'expires')
-    ]
 
     def get_user_details(self, response):
         """Return user details from drchrono account"""

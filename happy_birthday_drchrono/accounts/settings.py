@@ -11,5 +11,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.user.user_details'
 )
 
-DRCHRONO_CLIENT_ID       = os.environ.get('DRCHRONO_CLIENT_ID', '1GB3JDpDxmcYFkJwxgfIHo6N3KHxlYzS54NOszay')
-DRCHRONO_API_SECRET         = os.environ.get('DRCHRONO_API_SECRET', '')
+SOCIAL_AUTH_DRCHRONO_KEY  = os.environ.get('DRCHRONO_CLIENT_ID', 'Riowa6L4VwMruzpWfL1DAs0jFuf7Gsd2xP9IfFsF')
+SOCIAL_AUTH_DRCHRONO_SECRET = os.environ.get('DRCHRONO_API_SECRET', '')

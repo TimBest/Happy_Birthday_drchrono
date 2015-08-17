@@ -180,7 +180,7 @@ FILE_UPLOAD_HANDLERS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'drchrono.backends.drchronoOAuth2'
+    'drchrono.backends.drchronoOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
