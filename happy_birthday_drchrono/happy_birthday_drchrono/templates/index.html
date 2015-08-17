@@ -5,9 +5,10 @@
 {% block content %}
   <div class="panel">
     <p>Happy Birthday drchrono is the leading way for doctors using drchrono to wish your patients Happy Birthday.</p>
-    <a href="{{ url('social:begin', kwargs={'backend':'drchrono'}) }}" class="button success" role="button">
-      <span>Login with drcrono</span>
-    </a>
-
+    {% if not request.user.is_authenticated() %}
+      <a href="{{ url('social:begin', kwargs={'backend':'drchrono'}) }}" class="button success" role="button">
+        <span>Login with drcrono</span>
+      </a>
+    {% endif %}
   </div>
 {% endblock %}
