@@ -13,3 +13,4 @@ SOCIAL_AUTH_PIPELINE = (
 
 SOCIAL_AUTH_DRCHRONO_KEY  = os.environ.get('DRCHRONO_CLIENT_ID', 'Riowa6L4VwMruzpWfL1DAs0jFuf7Gsd2xP9IfFsF')
 SOCIAL_AUTH_DRCHRONO_SECRET = os.environ.get('DRCHRONO_API_SECRET', '')
+# TODO: define the scope parameters of this app 
