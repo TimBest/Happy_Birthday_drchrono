@@ -9,20 +9,21 @@ class drchronoOAuth2(BaseOAuth2):
     name = 'drchrono'
     AUTHORIZATION_URL = 'https://drchrono.com/o/authorize/'
     ACCESS_TOKEN_URL = 'https://drchrono.com/o/token/'
+    USER_DATA_URL = 'https://www.drchrono.com/api/users/current'
 
     def get_user_details(self, response):
         """Return user details from drchrono account"""
         return {'username': response.get('username'),}
 
-    '''def user_data(self, access_token, *args, **kwargs):
+    def user_data(self, access_token, *args, **kwargs):
         """Loads user data from service"""
-        url = 'https://www.drchrono.com/o/token/' + urlencode({
-            'access_token': access_token
+        return {}
+        # TODO: find out why this is 401. So i can pull in the username
+        response = requests.get(self.USER_DATA_URL, headers={
+            'Authorization': 'Bearer %s' % access_token,
         })
-        try:
-            return json.load(self.urlopen(url))
-        except ValueError:
-            return None'''
+        response.raise_for_status()
+        return response.json()
 
     @handle_http_errors
     def auth_complete(self, *args, **kwargs):
@@ -48,5 +49,5 @@ class drchronoOAuth2(BaseOAuth2):
         #refresh_token = data['refresh_token']
         #expires_timestamp = datetime.datetime.now(pytz.utc) + datetime.timedelta(seconds=data['expires_in'])
         data = self.user_data(access_token, *args, **kwargs)
-        kwargs.update({'response': data, 'backend': self})
+        kwargs.update({'response': data, 'access_token': access_token, 'backend': self})
         return self.strategy.authenticate(*args, **kwargs)
