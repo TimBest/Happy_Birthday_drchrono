@@ -10,4 +10,4 @@ class HappyBirthdayForm(forms.ModelForm):
         widgets = {
           'email_body' : forms.Textarea(attrs={'rows': 2, 'cols': 19}),
         }
-        fields = ('sms', 'email_subject','email_body','is_active',)
+        fields = ('notification_type', 'sms', 'email_subject','email_body', 'is_active',)

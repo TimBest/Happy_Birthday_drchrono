@@ -22,7 +22,7 @@ class MultipleFormsView(FormView):
         return True
 
     def forms_valid(self, forms):
-        return self.get_success_url(self)
+        return self.get_success_url()
 
     def forms_invalid(self, forms):
         context = self.get_context_data()

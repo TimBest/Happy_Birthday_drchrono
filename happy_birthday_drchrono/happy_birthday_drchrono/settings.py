@@ -211,9 +211,10 @@ PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.yuglify.YuglifyCompressor'
 PIPELINE_JS = {
     'scripts': {
         'source_filenames': (
-            'scripts/jquery-1.11.0.min.js',
-            'scripts/fastclick.js',
-            'scripts/foundation.min.js',
+            'scripts/includes/jquery-1.11.0.min.js',
+            'scripts/includes/fastclick.js',
+            'scripts/includes/foundation.min.js',
+            'scripts/greetings.js',
         ),
         'output_filename': 'scripts/scripts.min.js',
         'extra_context': {

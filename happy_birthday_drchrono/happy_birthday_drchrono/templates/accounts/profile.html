@@ -1,26 +1,38 @@
 {% extends "base.html" %}
+{% import "utils/forms.html" as forms %}
 
 {% block title %}{{ request.user.username }}'s Profile{% endblock %}
 
-
-{% macro non_field_errors(form) %}
-  {% if form.non_field_errors %}
-    {% for error in form.non_field_errors() %}
-      <p>{{ error }}</p>
-    {% endfor %}
-  {% endif %}
-{% endmacro %}
-
 {% block content %}
-  <div class="panel">
-    <p>{{ request.user.username }}'s Profile.</p>
-    <form>
-      {% with form=HappyBirthdayForm %}
-        {{ non_field_errors(form) }}
-        {% for field in form %}
-          {{ field }}
-        {% endfor %}
-      {% endwith %}
-    </form>
-  </div>
+  <h3>{{ request.user.username }}'s Notifications:</h3>
+
+  <form id="HappyBirthdayForm" method="post" action="{{ request.path }}" class="notificationForm">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <div class="card">
+      <div class="card-divider">
+        <div class="row">
+          <div class="small-8 columns">
+            <h4>Happy Birthday</h4>
+          </div>
+          <div class="small-4 columns text-right">
+            {# TODO: style this checkbox as a switch #}
+            {{ forms.field(HappyBirthdayForm.is_active) }}
+          </div>
+        </div>
+      </div>
+      <div class="card-section">
+        {{ forms.field(HappyBirthdayForm.notification_type) }}
+        <div class="SMS">
+          {{ forms.field(HappyBirthdayForm.sms) }}
+        </div>
+        <div class="email">
+          {{ forms.field(HappyBirthdayForm.email_subject) }}
+          {{ forms.field(HappyBirthdayForm.email_body) }}
+        </div>
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <button type="submit" class="button">Save</button>
+      </div>
+    </div>
+  </form>
+
 {% endblock %}
