@@ -1,6 +1,6 @@
 import os
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/profile/'
 # URL_PATH = ''
 # SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
@@ -24,7 +24,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
-    'accounts.pipeline.create_profile',
+    'accounts.pipeline.create_greetings',
 )
 
 SOCIAL_AUTH_DRCHRONO_KEY  = os.environ.get('DRCHRONO_CLIENT_ID', 'Riowa6L4VwMruzpWfL1DAs0jFuf7Gsd2xP9IfFsF')

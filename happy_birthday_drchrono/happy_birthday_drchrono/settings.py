@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 
     #'autocomplete_light',
     'easy_timezones',
+    'greetings',
     'jinja2',
     'pipeline',
     'social.apps.django_app.default',
