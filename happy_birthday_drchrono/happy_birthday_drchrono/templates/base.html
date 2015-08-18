@@ -21,7 +21,12 @@
         <div class="medium-12 columns">
           <h1><a class="text-black" href="{{ url('home') }}" >Happy Birthday drchrono</a></h1>
           {% if request.user.is_authenticated() %}
-            <a href="{{ url('logout') }}" class="right button" role="button">Logout</a>
+          <div class="global-nav-right">
+            <ul class="tabs">
+              <li class="tab-title "><a class="radius body-font-color" href="{{ url('profile') }}">{{ request.user.username }}</a></li>
+              <li class="tab-title "><a class="radius body-font-color" href="{{ url('logout') }}">logout</a></li>
+            </ul>
+          </div>
           {% endif %}
         </div>
         <hr/>

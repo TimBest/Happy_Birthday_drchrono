@@ -1,0 +1,81 @@
+@import 'foundation/components/global';
+@import 'foundation/components/card';
+
+
+/* HEADER */
+.header {
+  a {
+    &:hover, &:active {
+      text-decoration: none;
+    }
+  }
+
+  .global-nav-right {
+    .tabs {
+      .tab-title {
+        a {
+          color: $body-font-color;
+          &:hover, &:active {
+            color: $black;
+          }
+        }
+      }
+    }
+  }
+
+}
+@media only screen and (max-width: 40em) {
+  .header {
+    height: 100px;
+    position: relative;
+    .global-nav-right {
+      position: absolute;
+      bottom: -70px;
+      left: -17px;
+      .tabs {
+        height:55px;
+        width: 328px;
+        .tab-title {
+          a {
+            font-weight:normal;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 40.063em) {
+  .header {
+    .global-nav-right {
+      position: absolute;
+      bottom: 16px;
+      right: 0px;
+    }
+  }
+}
+
+
+/* FOOTER */
+
+
+/* HELLPERS */
+.body-font-color {
+  color: $body-font-color;
+  &:hover, &:active {
+    color: $black;
+  }
+}
+
+.button {
+  &:hover, &:active {
+    text-decoration: none;
+  }
+}
+
+.card {
+  .card-navigation {
+    padding: $card-padding;
+    padding-top: 0px;
+  }
+}
