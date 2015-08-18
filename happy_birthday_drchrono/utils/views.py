@@ -22,6 +22,8 @@ class MultipleFormsView(FormView):
         return True
 
     def forms_valid(self, forms):
+        for key, form in forms.iteritems():
+            form.save()
         return self.get_success_url()
 
     def forms_invalid(self, forms):
