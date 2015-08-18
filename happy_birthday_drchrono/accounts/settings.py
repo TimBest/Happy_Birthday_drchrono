@@ -13,8 +13,6 @@ LOGIN_REDIRECT_URL = '/profile/'
 # SOCIAL_AUTH_USERNAME_FORM_HTML = 'username_signup.html'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-# TODO: fix pipeline so registered users can authenticate
-# TODO: change this to the appropriate profile URL
 
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
