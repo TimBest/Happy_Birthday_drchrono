@@ -10,14 +10,15 @@ class drchronoOAuth2(BaseOAuth2):
     ACCESS_TOKEN_METHOD = 'POST'
     REDIRECT_STATE = False
     USER_DATA_URL = 'https://drchrono.com/api/users/current'
+    EXTRA_DATA = [
+        ('refresh_token', 'refresh_token'),
+        ('expires_in', 'expires_in')
+    ]
+    # TODO: Test/build token refreshing
 
     def get_user_details(self, response):
         """Return user details from drchrono account"""
         return {'username': response.get('username'),}
-
-    def get_user_id(self, details, response):
-        id_key = self.setting('UID_KEY', 'username')
-        return details.get(id_key)
 
     def user_data(self, access_token, *args, **kwargs):
         """Load user data from the service"""
