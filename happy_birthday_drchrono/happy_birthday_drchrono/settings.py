@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     #'autocomplete_light',
+    'djcelery',
     'easy_timezones',
     'greetings',
     'jinja2',
@@ -227,6 +228,8 @@ ROBOTS_SITEMAP_URLS = [
     'http://www.composerscouch.com/sitemap.xml',
 ]
 
+import djcelery
+djcelery.setup_loader()
 
 GEOIP_DATABASE = os.path.join(STATIC_ROOT, 'GeoLiteCity.dat')
 
