@@ -35,7 +35,7 @@ class MultipleFormsView(FormView):
     def get(self, request, username=None, **kwargs):
         context = self.get_context_data()
         context.update(self.get_forms())
-        # TODO: append next url to response?
+        # TODO: append next url to response
         return render(request, self.template_name, context=context)
 
     def get_context_data(self, **kwargs):

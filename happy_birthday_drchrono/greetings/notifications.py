@@ -19,7 +19,7 @@ def send_happy_birthdays():
     for greeting in email_greetings:
         update_patients_for_user(greeting.user, greeting.last_ran)
         today = datetime.datetime.now().today()
-        today = datetime.date(1977, 8, 23)
+
         for patient in greeting.user.patients.filter(date_of_birth__month=today.month, date_of_birth__day=today.day):
             if patient.email:
                 send_email(greeting.email_subject, greeting.email_body, [patient.email,])
