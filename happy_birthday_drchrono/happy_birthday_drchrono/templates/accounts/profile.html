@@ -4,34 +4,36 @@
 {% block title %}{{ request.user.username }}'s Profile{% endblock %}
 
 {% block content %}
-  <h3>{{ request.user.username }}'s Notifications:</h3>
-
-  <form id="HappyBirthdayForm" method="post" action="{{ request.path }}" class="notificationForm">
-    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-    <div class="card">
-      <div class="card-divider">
-        <div class="row">
-          <div class="small-8 columns">
-            <h4>Happy Birthday</h4>
+  <div class="row">
+    <div class="large-12 columns">
+      <h3>{{ request.user.username }}'s Notifications:</h3>
+      <form id="HappyBirthdayForm" method="post" action="{{ request.path }}" class="notificationForm">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <div class="card">
+          <div class="card-divider">
+            <div class="row">
+              <div class="small-8 columns">
+                <h4>Happy Birthday</h4>
+              </div>
+              <div class="small-4 columns text-right">
+                {{ forms.switch(HappyBirthdayForm.is_active) }}
+              </div>
+            </div>
           </div>
-          <div class="small-4 columns text-right">
-            {{ forms.switch(HappyBirthdayForm.is_active) }}
+          <div class="card-section">
+            {{ forms.field(HappyBirthdayForm.notification_type) }}
+            <div class="SMS">
+              {{ forms.field(HappyBirthdayForm.sms) }}
+            </div>
+            <div class="email">
+              {{ forms.field(HappyBirthdayForm.email_subject) }}
+              {{ forms.field(HappyBirthdayForm.email_body) }}
+            </div>
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <button type="submit" class="button">Save</button>
           </div>
         </div>
-      </div>
-      <div class="card-section">
-        {{ forms.field(HappyBirthdayForm.notification_type) }}
-        <div class="SMS">
-          {{ forms.field(HappyBirthdayForm.sms) }}
-        </div>
-        <div class="email">
-          {{ forms.field(HappyBirthdayForm.email_subject) }}
-          {{ forms.field(HappyBirthdayForm.email_body) }}
-        </div>
-        <input type="hidden" name="next" value="{{ next }}"/>
-        <button type="submit" class="button">Save</button>
-      </div>
+      </form>
     </div>
-  </form>
-
+  </div>
 {% endblock %}

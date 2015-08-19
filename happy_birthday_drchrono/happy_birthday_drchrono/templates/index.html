@@ -1,14 +1,55 @@
 {% extends "base.html" %}
 
-{% block title %}The Leading Way to Wish your Patients Happy Birthday{% endblock %}
+{% block title %}The Leading Way To Wish Your Patients Happy Birthday{% endblock %}
 
 {% block content %}
-  <div class="panel">
-    <p>Happy Birthday drchrono is the leading way for doctors using drchrono to wish your patients Happy Birthday.</p>
-    {% if not request.user.is_authenticated() %}
-      <a href="{{ url('social:begin', kwargs={'backend':'drchrono'}) }}" class="button success" role="button">
-        <span>Login with drcrono</span>
-      </a>
-    {% endif %}
+  <div class="home">
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="panel">
+        <h2>The Leading Way To Wish Your Patients Happy Birthday.</h2>
+        {% if not request.user.is_authenticated() %}
+          <div class="text-center">
+            <a href="{{ url('social:begin', kwargs={'backend':'drchrono'}) }}" class="button success" role="button">
+              <span>Login with drcrono</span>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-4 columns">
+        <div class ="card">
+          <img src="{{ static('images/Brush_and_watercolours.jpg') }}" alt="Personalized">
+          <div class ="card-section">
+            <h4>Personalized</h4>
+            <p>Form a better connection with your patients by personalizing their happy birthday message.</p>
+          </div>
+        </div>
+      </div>
+      <div class="medium-4 columns">
+        <div class ="card">
+          <img src="{{ static('images/Mailbox_with_@.jpg') }}" alt="Text or emal">
+          <div class ="card-section">
+            <h4>Text or Email</h4>
+            <p>Communicate how you want to with your choice of SMS or email greetings.</p>
+          </div>
+        </div>
+      </div>
+      <div class="medium-4 columns">
+        <div class ="card">
+          <img src="{{ static('images/Alarm_clock.jpg') }}" alt="comming soon">
+          <div class ="card-section">
+            <h4>Comming Soon</h4>
+            <ul>
+              <li>Variables inside messages</li>
+              <li>Time zone support</li>
+              <li>More holidays</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 {% endblock %}
