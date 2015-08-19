@@ -12,16 +12,16 @@ def logout(request):
     return redirect('/')
 
 class ProfileView(MultipleModelFormsView):
-    form_classes = {
-      'HappyBirthdayForm' : HappyBirthdayForm,
-    }
+    form_classes = {'HappyBirthdayForm' : HappyBirthdayForm,}
     happybirthday_id=None
     template_name='accounts/profile.html'
     success_url = 'profile'
 
     def get_objects(self, queryset=None):
-        return {
-          'HappyBirthdayForm' : self.request.user.happy_birthday,
-        }
+        # TODO: remove below
+        #from greetings.notifications import send_happy_birthdays
+        #send_happy_birthdays()
+        # TODO: remove above
+        return {'HappyBirthdayForm' : self.request.user.happy_birthday,}
 
 profile = login_required(ProfileView.as_view())

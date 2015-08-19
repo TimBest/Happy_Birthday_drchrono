@@ -19,3 +19,4 @@ class HappyBirthday(models.Model):
     notification_type = models.CharField(_('notification method'), max_length=1,
                                         choices=NOTIFICATION_TYPES,
                                         default=NOTIFICATION_TYPES[1][0])
+    last_ran = models.DateField(null=True, blank=True)

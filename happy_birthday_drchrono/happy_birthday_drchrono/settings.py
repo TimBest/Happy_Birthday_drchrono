@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     #'autocomplete_light',
     'djcelery',
     'easy_timezones',
-    'greetings',
     'jinja2',
     'pipeline',
     'social.apps.django_app.default',
@@ -49,7 +48,10 @@ INSTALLED_APPS = (
     #'test_without_migrations',
 
     'accounts',
+    'drchronoAPI',
+    'greetings',
     'pipeline_jinja2',
+    'social_auth_drchrono',
     'utils',
 )
 
@@ -182,7 +184,7 @@ FILE_UPLOAD_HANDLERS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'drchrono.backends.drchronoOAuth2',
+    'social_auth_drchrono.backends.drchronoOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 

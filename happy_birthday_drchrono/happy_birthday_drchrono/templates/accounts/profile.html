@@ -26,6 +26,7 @@
         </div>
         <div class="email">
           {{ forms.field(HappyBirthdayForm.email_subject) }}
+          {# TODO: make js that automatically resizes text feilds to the size of thier contents #}
           {{ forms.field(HappyBirthdayForm.email_body) }}
         </div>
         <input type="hidden" name="next" value="{{ next }}"/>
