@@ -9,6 +9,7 @@ function notification_method(form, method) {
 }
 
 $(document).ready(function() {
+    $("textarea").height( $("textarea")[0].scrollHeight );
     if ($("form[class=notificationForm]").length > 0) {
       form = $(this);
       method = $("#id_notification_type option:selected").text();
