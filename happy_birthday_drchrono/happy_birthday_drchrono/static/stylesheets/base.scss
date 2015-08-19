@@ -3,29 +3,42 @@
 
 
 /* HEADER */
-.header {
-  a {
-    &:hover, &:active {
-      text-decoration: none;
-    }
+
+$header-color: $white;
+$header-color-dark: $silver;
+
+
+/* HEADER */
+header {
+  background-color: $primary-color;
+  color: $header-color;
+  margin-bottom: 20px;
+  a, h1, h2, h3, h4, h5, h6 {
+    color: $header-color;
+  }
+  a:hover {
+    color: $header-color-dark;
+    text-decoration: none;
   }
 
   .global-nav-right {
     .tabs {
-      .tab-title {
-        a {
-          color: $body-font-color;
-          &:hover, &:active {
-            color: $black;
+      dd, .tab-title {
+        > a {
+          color: $header-color;
+          a:hover {
+            text-decoration: none;
           }
+        }
+        &.active a {
+          color: $header-color-dark;
         }
       }
     }
   }
-
 }
 @media only screen and (max-width: 40em) {
-  .header {
+  header {
     height: 100px;
     position: relative;
     .global-nav-right {
@@ -46,7 +59,7 @@
 }
 
 @media only screen and (min-width: 40.063em) {
-  .header {
+  header {
     .global-nav-right {
       position: absolute;
       bottom: 16px;
