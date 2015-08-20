@@ -36,11 +36,64 @@
     <div class="content row">
       <div class="large-12 columns">
         <p>
-          Doctors using drchrono for their elctronic record keeping can sign up and the app will send their patients a happy birthday email/text.
+          Doctors using drchrono for their electronic record keeping can sign up and the app will send their patients a happy birthday email/text.
         </p>
-        <ul>
-          <li>Screen Shots: <a href="https://flic.kr/s/aHski2fgwJ" target="_blank">https://flic.kr/s/aHski2fgwJ</a></li>
-        </ul>
+          <ul class="lightSlider">
+            <li class="slide-35mm" data-thumb="images/01_home_page.png">
+              <div class="slide-section"></div>
+                <a href="images/01_home_page.png">
+                  <div class="slide-image">
+                    <div class="shadow">
+                      <img src="images/01_home_page.png" />
+                    </div>
+                  </div>
+                </a>
+              <div class="slide-section">
+                <p>Home Page.</p>
+              </div>
+            </li>
+            <li class="slide-35mm" data-thumb="images/02_profile_email_deactivated.png">
+              <div class="slide-section"></div>
+                <a href="images/02_profile_email_deactivated.png">
+                  <div class="slide-image">
+                    <div class="shadow">
+                      <img src="images/02_profile_email_deactivated.png" />
+                    </div>
+                  </div>
+                </a>
+              <div class="slide-section">
+                <p>Profile page with the email Happy Birthday form's notification deactivated.</p>
+              </div>
+            </li>
+            <li class="slide-35mm" data-thumb="images/03_profile_sms_active.png">
+              <div class="slide-section"></div>
+                <a href="images/03_profile_sms_active.png">
+                  <div class="slide-image">
+                    <div class="shadow">
+                      <img src="images/03_profile_sms_active.png" />
+                    </div>
+                  </div>
+                </a>
+              <div class="slide-section">
+                <p>Profile page with the SMS Happy Birthday form's notification activated.</p>
+              </div>
+            </li>
+            <li class="slide-35mm" data-thumb="images/04_home_page_logged_in.png">
+              <div class="slide-section"></div>
+                <a href="images/04_home_page_logged_in.png">
+                  <div class="slide-image">
+                    <div class="shadow">
+                      <img src="images/04_home_page_logged_in.png" />
+                    </div>
+                  </div>
+                </a>
+              <div class="slide-section">
+                <p>Home page as seen by a user that is logged in.</p>
+              </div>
+            </li>
+
+
+          </ul>
       </div>
     </div>
 
@@ -59,7 +112,25 @@
       </div>
     </footer>
 
-    <script src="/scripts/jquery-1.11.3.min.js"></script>
+    <script src="/scripts/jquery.js"></script>
+    <script src="/scripts/fastclick.js"></script>
     <script src="/scripts/foundation.min.js"></script>
+    <script src="/scripts/lightslider.js"></script>
+    <script type="text/javascript">
+       $(document).foundation();
+       $('.lightSlider').lightSlider({
+           item: 1, //# of slides to show
+           slideMargin: 0, // spacing between each slide
+           speed: 300, // Transition duration
+           keyPress: true, // keyboard navigation
+           controls: true, // prev/next button display
+           prevHtml: "<h4><span class='control left body-font-color fi-arrow-left'></span></h4>", // custom html for prev control
+           nextHtml: "<h4><span class='control right body-font-color fi-arrow-right'></span></h4>", // custom html for next control
+           adaptiveHeight: true, //Dynamically adjust slider height based on each slide's height
+           gallery: true, // Enable thumbnails gallery
+           galleryMargin: 0, // Spacing between gallery and slide
+           thumbMargin: 5, // Spacing between each thumbnails
+       });
+   </script>
   </body>
 </html>
