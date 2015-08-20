@@ -2,9 +2,11 @@ import datetime
 from celery.schedules import crontab
 from celery.task import periodic_task
 
-from drchronoAPI.utils import update_patients_for_user
+from drchronoAPI.utils import update_patients_for_user, update_doctors_for_user
+from drchronoAPI.models import Doctor
 from greetings.messages import send_email, send_sms
 from greetings.models import HappyBirthday
+from utils.functions import get_object_or_None
 
 
 """
@@ -15,10 +17,11 @@ from greetings.models import HappyBirthday
 def send_happy_birthdays():
     sms_greetings = HappyBirthday.objects.filter(notification_type="s", is_active=True)
     email_greetings = HappyBirthday.objects.filter(notification_type="e",  is_active=True)
+    today = datetime.datetime.now().today()
 
     for greeting in email_greetings:
+        update_doctors_for_user(greeting.user)
         update_patients_for_user(greeting.user, greeting.last_ran)
-        today = datetime.datetime.now().today()
 
         for patient in greeting.user.patients.filter(date_of_birth__month=today.month, date_of_birth__day=today.day):
             if patient.email:
@@ -29,8 +32,8 @@ def send_happy_birthdays():
                 )
 
     for greeting in sms_greetings:
+        update_doctors_for_user(greeting.user)
         update_patients_for_user(greeting.user, greeting.last_ran)
-        today = datetime.datetime.now().today()
 
         for patient in greeting.user.patients.filter(date_of_birth__month=today.month, date_of_birth__day=today.day):
             if patient.cell_phone:
@@ -47,9 +50,24 @@ def evalualte_variables(patient, message=''):
     variables = {
         "$patients-first-name": patient.first_name,
         "$patients-last-name": patient.last_name,
-        "$doctors-name": patient.doctor,
         "$patients-age": age,
     }
+    doctor = get_object_or_None(Doctor, id=patient.doctor)
+    if doctor:
+        variables.update({
+            "$doctors-first-name": doctor.first_name,
+            "$doctors-last-name": doctor.last_name,
+            "$doctors-suffix": doctor.suffix,
+            "$doctors-job-title": doctor.job_title,
+            "$doctors-specialty": doctor.specialty,
+            "$doctors-cell-phone": doctor.cell_phone,
+            "$doctors-home-phone": doctor.home_phone,
+            "$doctors-office-phone": doctor.office_phone,
+            "$doctors-email": doctor.email,
+            "$doctors-website": doctor.website,
+        })
+
+
     message_parts = message.split('\$')
     for i in range(len(message_parts)):
         for variable, value in variables.iteritems():

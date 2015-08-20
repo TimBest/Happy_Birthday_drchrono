@@ -7,6 +7,10 @@
   <div class="row">
     <div class="large-12 columns">
       <h3>{{ request.user.username }}'s Notifications:</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-6 columns">
       <form id="HappyBirthdayForm" method="post" action="{{ request.path }}" class="notificationForm">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
         <div class="card">
@@ -29,17 +33,9 @@
               {{ forms.field(HappyBirthdayForm.email_subject) }}
               {{ forms.field(HappyBirthdayForm.email_body) }}
             </div>
-            <a data-dropdown="variable-dropdown" aria-controls="variable-dropdown" data-options="align:left" aria-expanded="false" class="right">Available variables</a>
+            <a data-dropdown="variable-dropdown" aria-controls="variable-dropdown" data-options="align:left" aria-expanded="false" class="right"></a>
             <div id="variable-dropdown" data-dropdown-content class="f-dropdown content" aria-autoclose="false" aria-hidden="true" tabindex="-1">
-              <ul class="no-bullet">
-                <li>$patients-first-name</li>
-                <li>$patients-last-name</li>
-                {# TODO: doctors name currently equates to the doctors ID. Change it to the doctors name #}
-                <li>$doctors-name</li>
-                <li>$patients-age</li>
-                <hr/>
-                <li>'\' before '$' ignores a variable</li>
-              </ul>
+
             </div>
             <input type="hidden" name="next" value="{{ next }}"/>
             <div>
@@ -48,6 +44,34 @@
           </div>
         </div>
       </form>
+    </div>
+    <div class="large-6 columns">
+      <div class="panel">
+        <h4>Available variables</h4>
+        <hr/>
+        <h5>Patient</h5>
+        <ul class="no-bullet">
+          <li>$patients-first-name</li>
+          <li>$patients-last-name</li>
+          <li>$patients-age</li>
+        </ul>
+        <hr/>
+        <h5>Patient's Doctor</h5>
+        <ul class="no-bullet">
+          <li>$doctors-first-name</li>
+          <li>$doctors-last-name</li>
+          <li>$doctors-suffix</li>
+          <li>$doctors-job-title</li>
+          <li>$doctors-specialty</li>
+          <li>$doctors-cell-phone</li>
+          <li>$doctors-home-phone</li>
+          <li>$doctors-office-phone</li>
+          <li>$doctors-email</li>
+          <li>$doctors-website</li>
+        </ul>
+        <hr/>
+        <p>'\' before '$' ignores a variable</p>
+      </div>
     </div>
   </div>
 {% endblock %}

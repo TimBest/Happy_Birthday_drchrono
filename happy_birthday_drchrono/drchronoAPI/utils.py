@@ -1,7 +1,7 @@
 import datetime
 
-from drchronoAPI.api import get_patients
-from drchronoAPI.models import Patient
+from drchronoAPI.api import get_patients, get_doctors
+from drchronoAPI.models import Patient, Doctor
 
 
 def update_patients_for_user(user, last_ran=None):
@@ -27,3 +27,24 @@ def update_patients_for_user(user, last_ran=None):
                     'state': p['state'],
                 },
             )
+
+def update_doctors_for_user(user):
+    parameters = {}
+    doctors = get_doctors(user, parameters)
+    for d in doctors:
+        doctor, created = Doctor.objects.update_or_create(
+            id=d['id'],
+            defaults= {
+                'user': user,
+                'first_name': d['first_name'],
+                'last_name': d['last_name'],
+                'suffix': d['suffix'],
+                'job_title': d['job_title'],
+                'specialty': d['specialty'],
+                'cell_phone': d['cell_phone'],
+                'home_phone': d['home_phone'],
+                'office_phone': d['office_phone'],
+                'email': d['email'],
+                'website': d['website'],
+            },
+        )
