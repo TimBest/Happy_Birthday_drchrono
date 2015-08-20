@@ -1,3 +1,5 @@
+$(document).foundation();
+
 function notification_method(form, method) {
     if (method == "Email") {
       form.find(".email").show();
