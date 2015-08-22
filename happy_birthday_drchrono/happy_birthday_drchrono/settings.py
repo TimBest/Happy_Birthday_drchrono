@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'greetings',
     'pipeline_jinja2',
     'social_auth_drchrono',
+    'timezones',
     'utils',
 )
 

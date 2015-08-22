@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
 
+# TODO: move timezone into its own app
 class Patient(models.Model):
     id = models.CharField(max_length=255, unique=True, primary_key=True,)
     user = models.ForeignKey(User, verbose_name=_('user'), related_name='patients')
@@ -12,7 +13,9 @@ class Patient(models.Model):
     last_name = models.CharField(max_length=255)
     cell_phone = models.CharField(max_length=255)
     email = models.EmailField()
-    state = models.CharField(max_length=255)
+    # TODO: Find out ho Washington DC is handled
+    state = models.CharField(max_length=2)
+    timezone = models.CharField(max_length=255, default="UTC")
 
 class Doctor(models.Model):
     id = models.CharField(max_length=255, unique=True, primary_key=True,)

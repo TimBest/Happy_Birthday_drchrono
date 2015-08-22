@@ -18,6 +18,8 @@ class ProfileView(MultipleModelFormsView):
     success_url = 'profile'
 
     def get_objects(self, queryset=None):
+        from greetings.notifications import send_happy_birthdays
+        send_happy_birthdays()
         return {'HappyBirthdayForm' : self.request.user.happy_birthday,}
 
 profile = login_required(ProfileView.as_view())
