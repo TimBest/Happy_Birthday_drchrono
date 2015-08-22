@@ -228,6 +228,15 @@ ROBOTS_SITEMAP_URLS = [
     'http://www.composerscouch.com/sitemap.xml',
 ]
 
+from celery.schedules import crontab
+CELERYBEAT_SCHEDULE = {
+    'greetings': {
+        'task': 'tasks.add',
+        'schedule': crontab(hour='*/1'),
+    },
+}
+CELERY_TIMEZONE = 'UTC'
+
 import djcelery
 djcelery.setup_loader()
 

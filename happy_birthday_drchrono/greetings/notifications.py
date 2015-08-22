@@ -1,6 +1,4 @@
 import datetime
-from celery.schedules import crontab
-from celery.task import periodic_task
 
 from drchronoAPI.utils import update_patients_for_user, update_doctors_for_user
 from drchronoAPI.models import Doctor
@@ -9,12 +7,14 @@ from greetings.models import HappyBirthday
 from utilities.functions import get_object_or_None
 
 
-"""
-    TODO: Imporve by running every hour.
-    Filter patients by those are in the where it is currently 9:30am (use the state field).
-"""
-@periodic_task(run_every=crontab(hour=9, minute=30, day_of_week="*"))
+# runs every hour. see settings.py
 def send_happy_birthdays():
+    now = datetime.datetime.now()
+    send_at = now.replace(hour=9)
+    tdelta = send_at - now
+    utc_plus = tdelta.seconds / 3600
+    # calculate what times zone it is currently 9:00am
+    # add that time zone to the filter
     sms_greetings = HappyBirthday.objects.filter(notification_type="s", is_active=True)
     email_greetings = HappyBirthday.objects.filter(notification_type="e",  is_active=True)
     today = datetime.datetime.now().today()
