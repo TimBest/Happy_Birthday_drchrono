@@ -63,7 +63,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'easy_timezones.middleware.EasyTimezoneMiddleware',
     'pipeline_jinja2.middleware.MinifyHTMLMiddleware',
 )
 
