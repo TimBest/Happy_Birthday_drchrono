@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'pipeline_jinja2',
     'social_auth_drchrono',
     'timezones',
-    'utils',
+    'utilities',
 )
 
 MIDDLEWARE_CLASSES = (

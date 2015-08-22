@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url('', include('social.apps.django_app.urls', namespace='social')),
 )
 
-urlpatterns += patterns('utils.views',
+urlpatterns += patterns('utilities.views',
     url(r'^$', 'load_template', {'template_name': 'index.html'}, name='home'),
 )
 

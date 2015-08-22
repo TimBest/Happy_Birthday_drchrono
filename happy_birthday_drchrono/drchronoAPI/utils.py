@@ -1,17 +1,10 @@
 import datetime
-from geopy.geocoders import Nominatim
-from tzwhere import tzwhere
 
 from drchronoAPI.api import get_patients, get_doctors
 from drchronoAPI.models import Patient, Doctor
+from timezones.models import State
+from utilities.functions import get_object_or_None
 
-
-def get_timezone_from_state(state):
-    #TODO: geolocator is VERY slow replace with a model that maps states to timezones
-    geolocator = Nominatim()
-    tz = tzwhere.tzwhere()
-    location = geolocator.geocode("%s USA" % state)
-    return tz.tzNameAt(location.latitude, location.longitude)
 
 def update_patients_for_user(user, last_ran=None):
     parameters = {}
@@ -33,8 +26,8 @@ def update_patients_for_user(user, last_ran=None):
                     'last_name': p['last_name'],
                     'cell_phone': p['cell_phone'],
                     'email': p['email'],
-                    'state': p['state'],
-                    'timezone': get_timezone_from_state(p['state']),
+                    #'state': p['state'],
+                    'state': get_object_or_None(State, state=p['state']),
                 },
             )
 

@@ -6,7 +6,7 @@ from drchronoAPI.utils import update_patients_for_user, update_doctors_for_user
 from drchronoAPI.models import Doctor
 from greetings.messages import send_email, send_sms
 from greetings.models import HappyBirthday
-from utils.functions import get_object_or_None
+from utilities.functions import get_object_or_None
 
 
 """
@@ -19,6 +19,7 @@ def send_happy_birthdays():
     email_greetings = HappyBirthday.objects.filter(notification_type="e",  is_active=True)
     today = datetime.datetime.now().today()
 
+    # TODO: make these for loop generic
     for greeting in email_greetings:
         update_doctors_for_user(greeting.user)
         update_patients_for_user(greeting.user)#, greeting.last_ran)
@@ -30,6 +31,8 @@ def send_happy_birthdays():
                     evalualte_variables(patient, greeting.email_body),
                     [patient.email,]
                 )
+        greeting.last_ran = today
+        greeting.save()
 
     for greeting in sms_greetings:
         update_doctors_for_user(greeting.user)
@@ -41,8 +44,8 @@ def send_happy_birthdays():
                     evalualte_variables(patient, greeting.sms),
                     patient.cell_phone
                 )
-    greeting.last_ran = today
-    greeting.save()
+        greeting.last_ran = today
+        greeting.save()
 
 def ord(n):
     return str(n)+("th" if 4<=n%100<=20 else {1:"st",2:"nd",3:"rd"}.get(n%10, "th"))

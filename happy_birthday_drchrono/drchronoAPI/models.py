@@ -2,6 +2,8 @@ from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
+from timezones.models import State
+
 
 # TODO: move timezone into its own app
 class Patient(models.Model):
@@ -14,7 +16,8 @@ class Patient(models.Model):
     cell_phone = models.CharField(max_length=255)
     email = models.EmailField()
     # TODO: Find out ho Washington DC is handled
-    state = models.CharField(max_length=2)
+    #state = models.CharField(max_length=2)
+    state = models.ForeignKey(State, verbose_name=_('state'), null=True, blank=True)
     timezone = models.CharField(max_length=255, default="UTC")
 
 class Doctor(models.Model):
