@@ -38,9 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #'autocomplete_light',
     'djcelery',
-    'easy_timezones',
     'jinja2',
     'pipeline',
     'social.apps.django_app.default',

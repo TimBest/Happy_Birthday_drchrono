@@ -4,7 +4,6 @@ billiard==3.3.0.20
 celery==3.1.18
 Django==1.8.3
 django-celery==3.1.16
-django-easy-timezones==0.2.0
 django-pipeline==1.5.3
 django-robots==1.1
 futures==3.0.3
